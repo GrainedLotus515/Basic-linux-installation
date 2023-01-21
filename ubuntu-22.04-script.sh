@@ -38,7 +38,7 @@ fi
 read -p "Do you want to isntall drivers for devices? (y/n) " driver_response
 
 #Check user response and act accordingly
-if [ "driver_response" == "y" ]; then 
+if [ "$driver_response" == "y" ]; then 
     #run Ubuntu Driver Manager
     ubuntu-drivers autoinstall
 else 
