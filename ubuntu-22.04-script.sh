@@ -4,7 +4,7 @@
 APPS="quickemu goverlay virt-manager nala"
 
 # List of PPAs to be added
-PPAS="ppa:flexiondotorg/quickemu ppa:graphics-drivers/ppa"
+PPAS="ppa:flexiondotorg/quickemu "
 
 # Ask user if they want to install the "lotus' default" set of applications
 read -p "Do you want to install the 'lotus' default' set of applications? (y/n) " user_response
@@ -32,4 +32,26 @@ if [ "$user_response" == "y" ]; then
     done
 else
     echo "Skipping installation of 'lotus' default' set of applications." >> $LOG_FILE 2>&1
+fi
+
+#Ask user if they want to Install drivers
+read -p "Do you want to isntall drivers for devices? (y/n) " driver_response
+
+#Check user response and act accordingly
+if [ "driver_response" == "y" ]; then 
+    #run Ubuntu Driver Manager
+    ubuntu-drivers autoinstall
+else 
+    echo "Skipping driver installation"
+fi
+
+#Ask user if they want to configure audio settings
+read -p "Do you want to configure audio settings? (y/n) " audio_response
+
+# Check user response and act accordingly
+if [ "$audio_response" == "y" ]; then
+    # Run the audio configuration script
+    ./audio.sh
+else
+    echo "Skipping audio configuration." >> $LOG_FILE 2>&1
 fi
