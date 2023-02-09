@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Create log file
+LOG_FILE=script22.04.log
+
+touch $LOG_FILE
+
+
 # List of applications to be installed
 APPS="quickemu goverlay virt-manager nala"
 
@@ -34,10 +40,17 @@ else
     echo "Skipping installation of 'lotus' default' set of applications." >> $LOG_FILE 2>&1
 fi
 
-#Ask user if they want to Install drivers
+echo "Enter a list of apps to install, separated by spaces: "
+read -a apps
+
+for app in "${apps[@]}"; do
+  sudo apt install -y "$app"
+done
+
+# Ask user if they want to Install drivers
 read -p "Do you want to isntall drivers for devices? (y/n) " driver_response
 
-#Check user response and act accordingly
+# Check user response and act accordingly
 if [ "$driver_response" == "y" ]; then 
     #run Ubuntu Driver Manager
     ubuntu-drivers autoinstall
@@ -45,7 +58,7 @@ else
     echo "Skipping driver installation"
 fi
 
-#Ask user if they want to configure audio settings
+# Ask user if they want to configure audio settings
 read -p "Do you want to configure audio settings? (y/n) " audio_response
 
 # Check user response and act accordingly

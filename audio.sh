@@ -24,7 +24,7 @@ if dpkg-query -W -f='${Status}' "pipewire" 2>/dev/null | grep -q "ok installed";
         case $opt in
             "ALSA and JACK")
                 log_info "Installing PipeWire modules for ALSA and JACK"
-                sudo apt-get install -y pipewire-modules-alsa pipewire-jack
+                sudo apt-get install -y pipewire-alsa pipewire-jack
                 if [ $? -ne 0 ]; then
                     log_error "Error installing PipeWire modules for ALSA and JACK. Please check your internet connection and try again."
                     exit 1
@@ -43,7 +43,7 @@ if dpkg-query -W -f='${Status}' "pipewire" 2>/dev/null | grep -q "ok installed";
                 ;;
             "PulseAudio")
                 log_info "Installing PipeWire modules for PulseAudio"
-                sudo apt-get install -y pipewire-modules-pulse
+                sudo apt-get install -y pipewire-pulse
                 if [ $? -ne 0 ]; then
                     log_error "Error installing PipeWire modules for PulseAudio. Please check your internet connection and try again."
                     exit 1
@@ -160,4 +160,4 @@ else
     done
 fi
 
-log_info "PipeWire configuration complete"
+log_info "PipeWire configuration complete."

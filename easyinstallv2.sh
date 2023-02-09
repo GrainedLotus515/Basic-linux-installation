@@ -60,3 +60,6 @@ case "$OS" in
         echo "Unknown Linux distribution" >> $LOG_FILE 2>&1
         ;;
 esac
+# Script pause to prevent closing
+echo "Press enter to continue"
+read
